@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/06/2018 23:41:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="cine" name="aplicacion.modelo.dominio.ButacaCartelera" optimistic-lock="version" table="butacas_carteleras">
+    <id name="bcCodigo" type="java.lang.Integer">
+      <column name="bc_codigo"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="aplicacion.modelo.dominio.Cartelera"  fetch="join" cascade="all" name="carteleras">
+      <column name="bc_cartelera" not-null="true"/>
+    </many-to-one>
+    <property name="bcIdentificadorButaca" type="string">
+      <column length="10" name="bc_identificador_butaca" not-null="true"/>
+    </property>
+    <property name="bcDisponible" type="boolean">
+      <column name="bc_disponible" not-null="true"/>
+    </property>
+    <property name="bcEstado" type="boolean">
+      <column name="bc_estado" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="ventasEntradases" table="ventas_entradas">
+      <key>
+        <column name="ven_butaca" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.modelo.dominio.VentaEntrada"/>
+    </set>
+  </class>
+</hibernate-mapping>

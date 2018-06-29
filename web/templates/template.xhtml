@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <p:growl id="mensaje"/>
+        <div id="top">
+            <ui:insert name="top">
+                <p:panel header="Menu de Opciones" >
+                    <h:form id="frmMenu1" rendered="#{loginFormBean.verificarSesion() eq 1}">
+                            <p:menubar>
+                                <p:submenu label="Usuarios">
+                                    <p:menuitem value="Mostrar Usuarios" outcome="usuarios"/>
+                                    <p:menuitem value="Eliminar Usuario"/>
+                                    <p:menuitem value="Modificar Usuario"/>
+                                </p:submenu>
+                                <p:menuitem value="Datos Personales"/>
+                                <f:facet name="options">
+                                    <p:outputLabel value="Bienvenido #{loginFormBean.nombreUsuarioValidado} "/>
+                                    <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
+                                </f:facet>
+                            </p:menubar>
+                    </h:form>
+                    <h:form id="frmMenu2" rendered="#{loginFormBean.verificarSesion() eq 2}">
+                            <p:menubar>
+                                <p:submenu label="Usuarios">
+                                    <p:menuitem value="Aregar Usuario"/>
+                                    <p:menuitem value="Eliminar Usuario"/>
+                                    <p:menuitem value="Modificar Usuario"/>
+                                </p:submenu>
+                                <p:menuitem value="Datos Personales"/>
+                                <f:facet name="options">
+                                    <p:outputLabel value="Bienvenido #{loginFormBean.nombreUsuarioValidado} "/>
+                                    <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
+                                </f:facet>
+                            </p:menubar>
+                    </h:form>
+                </p:panel>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

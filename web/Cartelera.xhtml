@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./templates/template.xhtml">
+        <ui:define name="top">
+             <h:form>
+                   
+                    <p:menubar>
+                        <p:submenu label="Opciones">
+                            <p:menuitem value="Perfiles"  />
+                            <p:menuitem value="Directores"/>
+                            <p:menuitem value="Cartelera"/> 
+                        </p:submenu>
+                        <p:menuitem value="Datos Personales"/>
+                        <f:facet name="options">
+                           
+                            <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </ui:define>
+            <ui:define name="content">
+        <p:panel id="pnlUsuarios" header="Cartelera">
+            <h:form id="frmMuestra">
+                <p:panelGrid id="pnlMuestra" columns="6">
+                    <p:dataTable id="tblUsuarios" resizableColumns="true" value="#{usuarioFormBean.listaUsuarios}" var="cadaUsuario" emptyMessage="No hay usuarios">
+                        <p:column headerText="Nombre de la Pelicula">
+                            <p:outputLabel value="#{cadaUsuario.usuCodigo}"/>
+                        </p:column>
+                        <p:column headerText="Sala">
+                            <p:outputLabel value="#{cadaUsuario.usuNombreUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Fecha">
+                            <p:outputLabel value="#{cadaUsuario.usuTipoUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Horario">
+                            <p:outputLabel value="#{cadaUsuario.usuEstado}"/>
+                        </p:column>
+                        <p:column headerText="Precio">
+                            <p:outputLabel value="#{cadaUsuario.usuEstado}"/>
+                        </p:column>
+            
+                      <p:column headerText="Compra">
+                          <p:commandButton value="Comprar Boleto"/>
+                      </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
+            </h:form> 
+        </p:panel>
+                </ui:define>
+            </ui:composition>
+    </h:body>
+</html>
+

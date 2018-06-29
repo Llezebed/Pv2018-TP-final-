@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Inicio de Sesion</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./templates/template.xhtml">
+            <ui:define name="content">
+                <div id="login">
+                    <p:panel header="Acceso al Sistema" footer="PV2018" >
+                        <h:form id="frmLogin">
+                            <p:growl id="mensaje" showDetail="true">
+                                <h:panelGrid id="tblLogin" columns="2" cellpadding="5">
+                                    <p:outputLabel for="nombreUsuario" value="Nombre de Usuario"/>
+                                    <p:inputText id="nombreUsuario" required="true" value="#{loginFormBean.nombreUs}"/>
+                                    <p:outputLabel for="passwUsuario" value="Contraseña"/>
+                                    <p:password id="passwUsuario" required="true" value="#{loginFormBean.paswUs}"/>
+                                    <p:commandButton id="botonValidar" ajax="false" value="Validar Uuario" update="frmLogin" action="#{loginFormBean.validarUsuario()}"/>
+                                </h:panelGrid>
+                            </p:growl>
+                        </h:form>
+                    </p:panel>
+                </div>
+                 <p:dialog id="dlgAgrPerfil" 
+                          widgetVar="agregarPerfil"
+                          header="Crear Perfil de usuario" 
+                          resizable="false" 
+                          showEffect="explode" 
+                          hideEffect="esplode" modal="true">
+                    <p:growl id="mensajesAltaPerfil" showDetail="false" showSummary="true"/>
+                    <h:form id="frmAltaPerfil">
+                        <p:panelGrid id="tblAltaPerfil" columns="2">
+                            <p:outputLabel for="txtNombreUser" value="Usuario:"/>
+                            <p:inputText id="txtNombreUser" value="#{perfilFormBean.nombreUs}" required="true"/>
+                            <p:outputLabel for="txtPassword" value="Contraseña"/>
+                            <p:inputText id="txtPassword" value="#{perfilFormBean.passwUs}" required="true"/>
+                            <p:outputLabel for="txtTipo" value="Tipo:"/>
+                            <p:selectOneMenu id="txtTipo" value="#{perfilFormBean.tipo}" required="true">    
+                            <f:selectItem itemLabel="Final" itemValue="final"/>
+                         </p:selectOneMenu>
+                            <p:outputLabel id="lblNombres" value="Nombres:"/>
+                            <p:inputText id="txtNombres" value="#{perfilFormBean.nombres}"/>
+                            <p:outputLabel id="lblApellidos" value="Apellidos:"/>
+                            <p:commandButton id="btnAgregarUsuario" value="Agregar" actionListener="#{perfilFormBean.agregarPefil()}" oncomplete="PF('agregarPerfil').hide()">
+                                <p:confirm header="Pedido de confirmacion" message="¿Confirma Agregar Perfil?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrarAltaPerfil" value="Salir" oncomplete="PF(´agregarPerfil´).hide()"/>
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+        
+   
+      
+       </h:body>
+</html>
+
