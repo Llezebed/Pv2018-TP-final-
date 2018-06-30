@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public interface PerfilDAO {
     ArrayList<Perfil> obtenerTodos();
+    Perfil obtenerPerfil(String usuario);
     Perfil consulta(String nombreUsuario,String passwd);
     void modificar (Perfil unPerfil);
      void agregar (Perfil unPerfil);

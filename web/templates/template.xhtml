@@ -16,14 +16,15 @@
     <h:body>
         <p:growl id="mensaje"/>
         <div id="top">
-            <ui:insert name="top">
-                <p:panel header="Menu de Opciones" >
+            <ui:insert name="top" >
+            
                     <h:form id="frmMenu1" rendered="#{loginFormBean.verificarSesion() eq 1}">
+                        <p:panel header="Menu de Opciones"  >
                             <p:menubar>
                                 <p:submenu label="Usuarios">
-                                    <p:menuitem value="Mostrar Usuarios" outcome="usuarios"/>
-                                    <p:menuitem value="Eliminar Usuario"/>
-                                    <p:menuitem value="Modificar Usuario"/>
+                                    <p:menuitem value="Usuarios" outcome="usuarios"/>
+                                    <p:menuitem value="Perfiles" outcome="PerfilFinal"/>
+                                    <p:menuitem value="Usuario"/>
                                 </p:submenu>
                                 <p:menuitem value="Datos Personales"/>
                                 <f:facet name="options">
@@ -31,8 +32,10 @@
                                     <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
                                 </f:facet>
                             </p:menubar>
+                            </p:panel>
                     </h:form>
                     <h:form id="frmMenu2" rendered="#{loginFormBean.verificarSesion() eq 2}">
+                        <p:panel header="Menu de Opciones"  >
                             <p:menubar>
                                 <p:submenu label="Usuarios">
                                     <p:menuitem value="Aregar Usuario"/>
@@ -45,8 +48,9 @@
                                     <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
                                 </f:facet>
                             </p:menubar>
+                          </p:panel>
                     </h:form>
-                </p:panel>
+              
             </ui:insert>
         </div>
 

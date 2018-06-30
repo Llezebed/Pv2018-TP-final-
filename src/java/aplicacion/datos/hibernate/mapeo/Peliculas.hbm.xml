@@ -16,23 +16,6 @@
     <property name="pelEstado" type="boolean">
       <column name="pel_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="pelDirs" table="pel_dir">
-      <key>
-        <column name="pd_pelicula" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.PelDir"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="cartelerases" table="carteleras">
-      <key>
-        <column name="car_pelicula" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.Cartelera"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="pelClas" table="pel_cla">
-      <key>
-        <column name="pc_pelicula" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.PelCla"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

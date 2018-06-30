@@ -46,6 +46,7 @@ public class LoginFormBean implements Serializable{
              FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Credenciales validas"," usuario valido");
           FacesContext.getCurrentInstance().addMessage(null,facesMessage);
           FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioValidado",usuario);
+          
           resultado="/bienvenido";
         }
         return resultado;
@@ -58,13 +59,11 @@ public class LoginFormBean implements Serializable{
       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
       FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Sesion Cerrada","Sesion Cerrada");
       FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-      String resultado="/login_1";
+      String resultado="/login";
       return resultado;
   }
-  public String redirreccionUsuarios(){
-      String resultado="/usuarios";
-      return resultado;
-  }
+  
+ 
    public boolean validarSesion(){
         boolean sesionValida=false;
         Usuario usuario=(Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioValidado");

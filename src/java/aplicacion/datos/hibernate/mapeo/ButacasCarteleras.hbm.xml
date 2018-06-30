@@ -19,11 +19,6 @@
     <property name="bcEstado" type="boolean">
       <column name="bc_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="ventasEntradases" table="ventas_entradas">
-      <key>
-        <column name="ven_butaca" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.VentaEntrada"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

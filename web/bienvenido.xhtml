@@ -13,27 +13,11 @@
         
         <ui:composition template="./templates/template.xhtml">
              
-            <ui:define name="top">
+            <ui:insert name="top" id="top"/>
                  <div id="top">
-                <h:form>
-                    <p:growl id="mensaje" showDetail="true"/>
-                    <p:menubar>
-                        <p:submenu label="Opciones" >
-                            <p:menuitem value="Perfiles" action="#{loginFormBean.redirreccionUsuarios()}"  />
-                            <p:menuitem value="Directores"/>
-                            <p:menuitem value="Cartelera"/> 
-                        </p:submenu>
-                        <p:menuitem value="Datos Personales"/>
-                        <f:facet name="options">
-                            <p:outputLabel value="Bienvenido: #{loginFormBean.nombreUsuarioValidado}"/>
-                            <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
-                      </div>
+                 </div>
 
-           </ui:define>
-            <ui:define name="content">Bienvenidos</ui:define>  
+            <ui:define name="content">Bienvenidos a Cine de Luz</ui:define>  
         
             
             </ui:composition>

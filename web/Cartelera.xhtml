@@ -11,21 +11,6 @@
     <h:body>
         <ui:composition template="./templates/template.xhtml">
         <ui:define name="top">
-             <h:form>
-                   
-                    <p:menubar>
-                        <p:submenu label="Opciones">
-                            <p:menuitem value="Perfiles"  />
-                            <p:menuitem value="Directores"/>
-                            <p:menuitem value="Cartelera"/> 
-                        </p:submenu>
-                        <p:menuitem value="Datos Personales"/>
-                        <f:facet name="options">
-                           
-                            <p:commandButton value="Cerrar Sesion" action="#{loginFormBean.cerrarSesion()}"/>
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
             </ui:define>
             <ui:define name="content">
         <p:panel id="pnlUsuarios" header="Cartelera">

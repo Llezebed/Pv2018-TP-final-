@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Usuarios</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./templates/template.xhtml">
+            <ui:define name="content">
+                <p:panel id="pnlPerfiles" header="Perfiles">
+                    <h:form id="frmPerfil">
+                        <p:panelGrid id="tblBotones" columns="1">
+                            
+                            <p:commandButton id="btnBuscarPerfil"
+                                                 value="Buscar"
+                                                 oncomplete="PF('buscarPerfil').show()"
+                                                 update="tblMuestraPerfiles"/>
+                        </p:panelGrid>
+                        
+                        <h:panelGrid id="tblMuestraPerfiles" columns="2">
+                            <p:dataTable id="dtTblPerfiles"
+                                         >
+                                <p:column headerText="Nobre">
+                                    <p:outputLabel value="#{perfilFormBean.apellidos}"/>
+                                </p:column>
+                                <p:column headerText="Apellidos">
+                                    <p:outputLabel value="#{cadaPerfil.usuarios.usuNombreUsuario}"/>
+                                </p:column>
+                                <p:column headerText="Tipo Usuario">
+                                    <p:outputLabel value="#{cadaPerfil.usuarios.usuTipoUsuario}"/>
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    <p:outputLabel value="#{cadaPerfil.perNombres}"/>
+                                </p:column>
+                                <p:column headerText="Perfil">
+                                    <p:outputLabel value="#{cadaPerfil.perApellidos}"/>
+                                </p:column>
+                                
+                            </p:dataTable>
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

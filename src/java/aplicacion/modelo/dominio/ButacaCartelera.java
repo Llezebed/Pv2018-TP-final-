@@ -16,7 +16,7 @@ public class ButacaCartelera  implements java.io.Serializable {
      private String bcIdentificadorButaca;
      private boolean bcDisponible;
      private boolean bcEstado;
-     private Set ventasEntradases = new HashSet(0);
+   
 
     public ButacaCartelera() {
     }
@@ -27,13 +27,6 @@ public class ButacaCartelera  implements java.io.Serializable {
         this.bcIdentificadorButaca = bcIdentificadorButaca;
         this.bcDisponible = bcDisponible;
         this.bcEstado = bcEstado;
-    }
-    public ButacaCartelera(Cartelera carteleras, String bcIdentificadorButaca, boolean bcDisponible, boolean bcEstado, Set ventasEntradases) {
-       this.carteleras = carteleras;
-       this.bcIdentificadorButaca = bcIdentificadorButaca;
-       this.bcDisponible = bcDisponible;
-       this.bcEstado = bcEstado;
-       this.ventasEntradases = ventasEntradases;
     }
    
     public Integer getBcCodigo() {
@@ -71,14 +64,7 @@ public class ButacaCartelera  implements java.io.Serializable {
     public void setBcEstado(boolean bcEstado) {
         this.bcEstado = bcEstado;
     }
-    public Set getVentasEntradases() {
-        return this.ventasEntradases;
-    }
-    
-    public void setVentasEntradases(Set ventasEntradases) {
-        this.ventasEntradases = ventasEntradases;
-    }
-
+ 
 
 
 

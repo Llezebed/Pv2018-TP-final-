@@ -25,17 +25,6 @@
     <property name="carEstado" type="boolean">
       <column name="car_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="preciosCartelerases" table="precios_carteleras">
-      <key>
-        <column name="pre_cartelera" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.PrecioCartelera"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="butacasCartelerases" table="butacas_carteleras">
-      <key>
-        <column name="bc_cartelera" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.ButacaCartelera"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

@@ -9,10 +9,9 @@ import aplicacion.datos.hibernate.dao.UsuarioDAO;
 import aplicacion.datos.hibernate.dao.imp.UsuarioDAOImp;
 import aplicacion.modelo.dominio.Usuario;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+
 
 /**
  *
@@ -37,9 +36,14 @@ public class UsuarioBean {
         return usuario;
         
     }
+    public void agregarUsuario(Usuario unUsuario){
+        UsuarioDAO usuarioDAO=new UsuarioDAOImp();
+        usuarioDAO.agregar(unUsuario);
+    }
     public List<Usuario> obtenerUsuarios(){
         UsuarioDAO usuarioDAO=new UsuarioDAOImp();
         return usuarioDAO.obtenerTodos();
     }
+    
     
 }

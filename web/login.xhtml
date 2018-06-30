@@ -10,6 +10,9 @@
     </h:head>
     <h:body>
         <ui:composition template="./templates/template.xhtml">
+            <ui:define name="top">
+                    <p:outputLabel value="El Cine de la Luz" />
+            </ui:define>
             <ui:define name="content">
                 <div id="login">
                     <p:panel header="Acceso al Sistema" footer="PV2018" >
@@ -21,6 +24,9 @@
                                     <p:outputLabel for="passwUsuario" value="Contraseña"/>
                                     <p:password id="passwUsuario" required="true" value="#{loginFormBean.paswUs}"/>
                                     <p:commandButton id="botonValidar" ajax="false" value="Validar Uuario" update="frmLogin" action="#{loginFormBean.validarUsuario()}"/>
+                                    <p:commandButton id="botonNR" value="Registrarse"
+                                                     oncomplete="PF('agregarPerfil').show()"
+                                                     actionListener="#{perfilFormBean.agregarPefil()}"/>
                                 </h:panelGrid>
                             </p:growl>
                         </h:form>
@@ -45,10 +51,10 @@
                          </p:selectOneMenu>
                             <p:outputLabel id="lblNombres" value="Nombres:"/>
                             <p:inputText id="txtNombres" value="#{perfilFormBean.nombres}"/>
-                            <p:outputLabel id="lblApellidos" value="Apellidos:"/>
-                            <p:commandButton id="btnAgregarUsuario" value="Agregar" actionListener="#{perfilFormBean.agregarPefil()}" oncomplete="PF('agregarPerfil').hide()">
-                                <p:confirm header="Pedido de confirmacion" message="¿Confirma Agregar Perfil?" icon="ui-icon-alert"/>
-                            </p:commandButton>
+                            <p:outputLabel id="Apellidos" value="Apellidos:"/>
+                            <p:inputText id="txtApellidos" value="#{perfilFormBean.apellidos}" required="true"/>
+                            <p:commandButton id="btnAgregarUsuario" value="Agregar" actionListener="#{perfilFormBean.agregarPerfil()}" oncomplete="PF('agregarPerfil').hide()">
+                                 </p:commandButton>
                             <p:commandButton id="btnCerrarAltaPerfil" value="Salir" oncomplete="PF(´agregarPerfil´).hide()"/>
                         </p:panelGrid>
                     </h:form>

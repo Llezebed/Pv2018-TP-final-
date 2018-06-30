@@ -16,11 +16,6 @@
     <property name="dirEstado" type="boolean">
       <column name="dir_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="pelDirs" table="pel_dir">
-      <key>
-        <column name="pd_director" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.PelDir"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

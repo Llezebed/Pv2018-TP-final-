@@ -19,11 +19,6 @@
     <property name="usuEstado" type="boolean">
       <column name="usu_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="perfileses" table="perfiles">
-      <key>
-        <column name="per_usuario" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.Perfil"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

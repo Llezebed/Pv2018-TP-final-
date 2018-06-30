@@ -26,7 +26,9 @@ public class UsuarioDAOImp implements UsuarioDAO {
       Session session =  HibernateUtil.getSessionFactory().openSession();
       Criteria criteria=session.createCriteria(Usuario.class);
       criteria.add(Restrictions.like("usuEstado", true));
-      return (ArrayList<Usuario>) criteria.list();
+      ArrayList<Usuario> listado = (ArrayList<Usuario>) criteria.list();
+      session.close();
+      return listado;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
          session.save(usuario);
          session.getTransaction().commit();
          session.close();
+         System.out.println("estoy en el DAO IMP.....");
     }
 
     @Override

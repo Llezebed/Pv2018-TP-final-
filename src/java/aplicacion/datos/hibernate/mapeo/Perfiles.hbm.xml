@@ -31,11 +31,6 @@
     <property name="perEstado" type="boolean">
       <column name="per_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="ventasEntradases" table="ventas_entradas">
-      <key>
-        <column name="ven_vendedor" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.VentaEntrada"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

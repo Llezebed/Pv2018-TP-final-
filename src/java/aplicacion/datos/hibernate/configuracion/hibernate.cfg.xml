@@ -56,7 +56,7 @@ Contributor(s):
     <mapping resource="aplicacion/datos/hibernate/mapeo/Butacas.hbm.xml"/>
     <mapping resource="aplicacion/datos/hibernate/mapeo/PelCla.hbm.xml"/>
     <mapping resource="aplicacion/datos/hibernate/mapeo/Carteleras.hbm.xml"/>
-    <mapping resource="aplicacion/datos/hibernate/mapeo/Usuarios.hbm.xml"/>
+    <mapping class="" file="" jar="" package="" resource="aplicacion/datos/hibernate/mapeo/Usuarios.hbm.xml"/>
     <mapping resource="aplicacion/datos/hibernate/mapeo/ButacasCarteleras.hbm.xml"/>
     <mapping resource="aplicacion/datos/hibernate/mapeo/PreciosCarteleras.hbm.xml"/>
   </session-factory>

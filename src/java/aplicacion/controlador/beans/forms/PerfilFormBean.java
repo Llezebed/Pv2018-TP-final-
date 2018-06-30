@@ -6,6 +6,7 @@
 package aplicacion.controlador.beans.forms;
 
 import aplicacion.controlador.beans.PerfilBean;
+import aplicacion.controlador.beans.UsuarioBean;
 import aplicacion.modelo.dominio.Perfil;
 import aplicacion.modelo.dominio.Usuario;
 import java.util.Date;
@@ -23,8 +24,12 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class PerfilFormBean {
-    @ManagedProperty(value="#{PerfilBean}")
+
+     private int usucod;
+    @ManagedProperty(value = "#{PerfilBean}")
     private PerfilBean perfilBean;
+    @ManagedProperty(value = "#{UsuarioBean}")
+    private UsuarioBean usuarioBean;
     private Usuario unUsuario;
     private Perfil unPerfil;
     private String nombreUs;
@@ -37,40 +42,48 @@ public class PerfilFormBean {
     private String dni;
 
     public PerfilFormBean() {
-        perfilBean=new PerfilBean();
+        perfilBean = new PerfilBean();
         listarPerfiles();
     }
-    private void listarPerfiles(){
+
+    private void listarPerfiles() {
         setPerfilesEncontrados(getPerfilBean().listarPerfiles());
     }
-    public void establecerPerfil(Perfil per){
-       setUnPerfil(per);
+
+    public void establecerPerfil(Perfil per) {
+        setUnPerfil(per);
     }
-    public void modificarPerfil(){
-         unUsuario=new Usuario(getNombreUs(),getPasswUs(),getTipo(),true);
-     unPerfil=new Perfil(getUnUsuario(),getNombres(),getApellidos(),"11111",new Date(),"email","direcion",true);
-     FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"El usuario ha sido modificado",null);
-FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-    
+
+    public void modificarPerfil() {
+        unUsuario = new Usuario(getUsucod(), getNombreUs(), getPasswUs(), getTipo(), true);
+        unPerfil = new Perfil(getUnUsuario(), getNombres(), getApellidos(), "11111", new Date(), "email", "direcion", true);
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "El usuario ha sido modificado", null);
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+
     }
-    public void agregarPefil(){
-        unUsuario=new Usuario(getNombreUs(),getPasswUs(),getTipo(),true);
-        unPerfil=new Perfil(getUnUsuario(),getNombres(),getApellidos(),"11111",new Date(),"email","direcion",true);
-        FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Felicidades!","Usuario creado con exito");
-FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-    
-try{
-perfilBean.agregarPerfil(unPerfil);
-}
-catch(Exception e)
-{FacesMessage faceMessage=new FacesMessage (FacesMessage.SEVERITY_ERROR,"ERROR","El usuario no se ha podido crear");
-FacesContext.getCurrentInstance().addMessage(null, faceMessage);
-}
-FacesMessage facesMessage2=new FacesMessage(FacesMessage.SEVERITY_INFO,"Felicidades!","Usuario creado con exito");
-FacesContext.getCurrentInstance().addMessage(null, facesMessage2);
-listarPerfiles();
+
+    public void agregarPerfil() {
+        unUsuario = new Usuario(5, getNombreUs(), getPasswUs(), getTipo(), true);
+        
+        unPerfil = new Perfil(getUnUsuario(), getNombres(), getApellidos(), "11111", new Date(), "email", "direcion", true);
+        
+
+        try {
+            System.out.println("estoy en el TRY....."+ unUsuario.getUsuCodigo().toString());
+            usuarioBean.agregarUsuario(unUsuario);
+            //perfilBean.agregarPerfil(unPerfil);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+        } catch (Exception e) {
+            FacesMessage faceMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "El usuario no se ha podido crear");
+            FacesContext.getCurrentInstance().addMessage(null, faceMessage);
+        }
+        FacesMessage facesMessage2 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage2);
+        listarPerfiles();
     }
-    public void eliminarPerfil(){
+
+    public void eliminarPerfil() {
         getUnPerfil().getUsuarios().setUsuEstado(false);
         getUnPerfil().setPerEstado(false);
         perfilBean.modificarPerfil(getUnPerfil());
@@ -81,6 +94,10 @@ listarPerfiles();
      * @return the perfilBean
      */
     public PerfilBean getPerfilBean() {
+//        Perfil consultado = null;
+//        PerfilDAO pd = new PerfilDAOImp();
+//        consultado = pd.obtenerPerfil(getNombreUs());
+//        setUnPerfil(consultado);
         return perfilBean;
     }
 
@@ -230,5 +247,33 @@ listarPerfiles();
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
+
+    /**
+     * @return the usucod
+     */
+    public int getUsucod() {
+        return usucod;
+    }
+
+    /**
+     * @param usucod the usucod to set
+     */
+    public void setUsucod(int usucod) {
+        this.usucod = usucod;
+    }
+
+    /**
+     * @return the usuarioBean
+     */
+    public UsuarioBean getUsuarioBean() {
+        return usuarioBean;
+    }
+
+    /**
+     * @param usuarioBean the usuarioBean to set
+     */
+    public void setUsuarioBean(UsuarioBean usuarioBean) {
+        this.usuarioBean = usuarioBean;
+    }
+
 }

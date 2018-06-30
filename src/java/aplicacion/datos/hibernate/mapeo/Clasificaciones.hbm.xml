@@ -13,11 +13,6 @@
     <property name="claEstado" type="boolean">
       <column name="cla_estado" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="pelClas" table="pel_cla">
-      <key>
-        <column name="pc_clasificacion" not-null="true"/>
-      </key>
-      <one-to-many class="aplicacion.modelo.dominio.PelCla"/>
-    </set>
+    
   </class>
 </hibernate-mapping>

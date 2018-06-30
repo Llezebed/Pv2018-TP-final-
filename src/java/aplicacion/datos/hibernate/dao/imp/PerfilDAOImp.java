@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 public class PerfilDAOImp implements PerfilDAO {
 
     @Override
+   
     public ArrayList<Perfil> obtenerTodos() {
       Session session =  HibernateUtil.getSessionFactory().openSession();
       Criteria criteria=session.createCriteria(Perfil.class);
@@ -65,6 +66,18 @@ public class PerfilDAOImp implements PerfilDAO {
     @Override
     public void eliminar(Perfil unPerfil) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Perfil obtenerPerfil(String usuario) {
+     Session session =  HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria=session.createCriteria(Perfil.class);
+        criteria.add(Restrictions.like("usuNombreUsuario",usuario));
+         Perfil u=null;
+         if(!criteria.list().isEmpty()){
+             u=(Perfil)criteria.list().get(0);
+         }
+     return u;   
     }
     
 }
