@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface PeliculaDAO {
     ArrayList<Pelicula> obtenerTodos();
-    Pelicula consulta(String peNombre,String peDescrip);
+    Pelicula consulta(String peNombre);
     void modificar (Pelicula pelicula);
     void agregar (Pelicula pelicula);
     void eliminar (Pelicula pelicula);

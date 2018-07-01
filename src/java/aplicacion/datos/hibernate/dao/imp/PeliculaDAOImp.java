@@ -29,7 +29,7 @@ public class PeliculaDAOImp implements PeliculaDAO{
     }
 
     @Override
-    public Pelicula consulta(String peNombre, String peDescrip) {
+    public Pelicula consulta(String peNombre) {
         Session session =  HibernateUtil.getSessionFactory().openSession();
         Criteria criteria=session.createCriteria(Pelicula.class);
         criteria.add(Restrictions.like("pelNombre",peNombre));
