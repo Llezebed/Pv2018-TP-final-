@@ -29,7 +29,7 @@ public class CarteleraBean {
         CarteleraDAO carteleraDAO=new CarteleraDAOImp();
         carteleraDAO.agregar(unCartelera);
     }
-    public List<Cartelera> listarCartelera(){
+    public List<Cartelera> listarCarteleras(){
         CarteleraDAO carteleraDAO=new CarteleraDAOImp();
         return carteleraDAO.obtenerTodos();
     }
@@ -37,5 +37,9 @@ public class CarteleraBean {
         CarteleraDAO carteleraDAO=new CarteleraDAOImp();
         carteleraDAO.modificar(unCartelera);
     }
-     
+
+//    public Object listarCarteleras() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//     
 }

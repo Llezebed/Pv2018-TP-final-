@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface SalaDAO {
     ArrayList<Sala> obtenerTodos();
-    Sala consulta(String salaNom,String salaDes);
+    Sala consulta(Integer salaCod);
     void modificar (Sala unaSala);
     void agregar (Sala unaSala);
     void eliminar (Sala unaSala);

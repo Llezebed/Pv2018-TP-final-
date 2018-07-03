@@ -5,8 +5,10 @@
  */
 package aplicacion.controlador.beans.forms;
 
+import aplicacion.controlador.beans.ButacaBean;
 import aplicacion.controlador.beans.CarteleraBean;
 import aplicacion.controlador.beans.PerfilBean;
+import aplicacion.controlador.beans.SalaBean;
 import aplicacion.controlador.beans.VentaEntradaBean;
 import aplicacion.modelo.dominio.Butaca;
 import aplicacion.modelo.dominio.Cartelera;
@@ -35,7 +37,7 @@ private CarteleraBean carteleraBean;
 @ManagedProperty(value = "#(perfilBean)")
 private PerfilBean perfilBean;
 @ManagedProperty(value = "#(butacaBean)")
-//SalaBean salaBean;
+SalaBean salaBean;
 private String nombrePeli;
 private String horario;
 private String precio;
@@ -47,7 +49,7 @@ private List<Pelicula> peliculas;
 private List<Perfil> perfiles;
 private List<Butaca> butacasA;
 private List<Butaca> butacasB;
-private Cartelera unaCatelera;
+private Cartelera unaCartelera;
 private Pelicula unaPelicula;
 private Sala salaA;
 private Sala salaB;
@@ -56,13 +58,15 @@ private boolean act2;
 private boolean act3;
 private boolean act4;
 private String resumenReserva;
+private ButacaBean butacaBean;
+
 
 public VentaEntradasFormBeans() {
     carteleraBean = new CarteleraBean();
     perfilBean = new PerfilBean();
     VentaEntradaBean = new VentaEntradaBean();
-    //butacaBean = new ButacaBean();
-    //salaBean = new SalaBean();
+    butacaBean = new ButacaBean();
+    salaBean = new SalaBean();
     imagenBut = "butaca.png";
     act1 = false;
     act2 = true;
@@ -71,11 +75,11 @@ public VentaEntradasFormBeans() {
     listarButacas();
 }
 private void listarButacas (){
-//    setUnaCartelera(carteleraBean.listarCarteleras().get (0));
-//    setSalaA(salaBean.consultarSala(1));
-//    setSalaB(salaBean.consultarSala(4));
-//    setButacasA(butacaBean.listarButacas(getSalaA()));
-//    setButacasB(butacaBean.listarButacas(getSalaB()));
+    setUnaCartelera(carteleraBean.listarCarteleras().get(0));
+    setSalaA(salaBean.consultarSala(1));
+    setSalaB(salaBean.consultarSala(4));
+    setButacasA(getButacaBean().listarButacas(getSalaA()));
+    setButacasB(getButacaBean().listarButacas(getSalaB()));
 }
 
 public void establecerPelicula(Cartelera pel) {
@@ -341,19 +345,6 @@ private void listarCarteleraDia() {
         this.butacasB = butacasB;
     }
 
-    /**
-     * @return the unaCatelera
-     */
-    public Cartelera getUnaCatelera() {
-        return unaCatelera;
-    }
-
-    /**
-     * @param unaCatelera the unaCatelera to set
-     */
-    public void setUnaCatelera(Cartelera unaCatelera) {
-        this.unaCatelera = unaCatelera;
-    }
 
     /**
      * @return the unaPelicula
@@ -409,6 +400,34 @@ private void listarCarteleraDia() {
      */
     public void setVentaEntradaBean(VentaEntradaBean VentaEntradaBean) {
         this.VentaEntradaBean = VentaEntradaBean;
+    }
+
+    /**
+     * @return the unaCartelera
+     */
+    public Cartelera getUnaCartelera() {
+        return unaCartelera;
+    }
+
+    /**
+     * @param unaCartelera the unaCartelera to set
+     */
+    public void setUnaCartelera(Cartelera unaCartelera) {
+        this.unaCartelera = unaCartelera;
+    }
+
+    /**
+     * @return the butacaBean
+     */
+    public ButacaBean getButacaBean() {
+        return butacaBean;
+    }
+
+    /**
+     * @param butacaBean the butacaBean to set
+     */
+    public void setButacaBean(ButacaBean butacaBean) {
+        this.butacaBean = butacaBean;
     }
 
 

@@ -29,11 +29,10 @@ public class SalaDAOImp implements SalaDAO{
     }
 
     @Override
-    public Sala consulta(String salaNom, String salaDes) {
+    public Sala consulta(Integer salaCod) {
         Session session =  HibernateUtil.getSessionFactory().openSession();
         Criteria criteria=session.createCriteria(Sala.class);
-        criteria.add(Restrictions.like("dirApellidos",salaNom));
-        criteria.add(Restrictions.like("dirNombres",salaDes));
+        criteria.add(Restrictions.like("salCodigo",salaCod));
         Sala sa=null;
          if(!criteria.list().isEmpty()){
              sa=(Sala)criteria.list().get(0);
