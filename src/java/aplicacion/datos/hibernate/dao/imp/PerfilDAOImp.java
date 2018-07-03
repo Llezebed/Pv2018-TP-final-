@@ -27,6 +27,7 @@ public class PerfilDAOImp implements PerfilDAO {
       Session session =  HibernateUtil.getSessionFactory().openSession();
       Criteria criteria=session.createCriteria(Perfil.class);
       criteria.add(Restrictions.like("perEstado", true));
+      session.close();
       return (ArrayList<Perfil>) criteria.list();
     }
 
