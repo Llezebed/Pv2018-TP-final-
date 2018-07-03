@@ -27,10 +27,12 @@ public class Usuario  implements java.io.Serializable {
         this.usuTipoUsuario = usuTipoUsuario;
         this.usuEstado = usuEstado;
     }
-
-	
-
-   
+    public Usuario( String usuNombreUsuario, String usuPassword, String usuTipoUsuario, boolean usuEstado) {
+        this.usuNombreUsuario = usuNombreUsuario;
+        this.usuPassword = usuPassword;
+        this.usuTipoUsuario = usuTipoUsuario;
+        this.usuEstado = usuEstado;
+    }
     public Integer getUsuCodigo() {
         return this.usuCodigo;
     }

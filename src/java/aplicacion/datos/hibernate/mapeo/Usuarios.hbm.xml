@@ -11,7 +11,7 @@
       <column length="10" name="usu_nombre_usuario" not-null="true"/>
     </property>
     <property name="usuPassword" type="string">
-      <column name="usu_password" not-null="true" unique="true"/>
+      <column length="255" name="usu_password" not-null="true" unique="true"/>
     </property>
     <property name="usuTipoUsuario" type="string">
       <column length="15" name="usu_tipo_usuario" not-null="true"/>
