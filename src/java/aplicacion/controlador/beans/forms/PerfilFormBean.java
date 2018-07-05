@@ -28,7 +28,6 @@ import javax.inject.Named;
 @Dependent
 public class PerfilFormBean implements Serializable{
 
-    private static final long serialVersionUID = 1L;
     private int usucod;
     @ManagedProperty(value = "#{PerfilBean}")
     private PerfilBean perfilBean;
@@ -49,6 +48,7 @@ public class PerfilFormBean implements Serializable{
         perfilBean = new PerfilBean();
         usuarioBean = new UsuarioBean();
         unUsuario = new Usuario();
+        listarPerfiles();
         //listarPerfiles();
     }
 

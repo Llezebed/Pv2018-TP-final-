@@ -6,14 +6,15 @@
 package aplicacion.controlador.beans.forms;
 
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+
+
 
 /**
  *
  * @author alumno
  */
 @Named(value = "directorFormBean")
-@Dependent
+
 public class DirectorFormBean {
 
     /**
