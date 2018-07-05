@@ -17,9 +17,29 @@ import javax.faces.bean.ViewScoped;
  *
  * @author Florencia
  */
-@ManagedBean
+@ManagedBean(name = "usuarioBean")
 @ViewScoped
 public class UsuarioBean {
+
+        private Usuario usuario;
+
+    /**
+     * Get the value of usuario
+     *
+     * @return the value of usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * Set the value of usuario
+     *
+     * @param usuario new value of usuario
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     /**
      * Creates a new instance of UsuarioBean
@@ -27,7 +47,12 @@ public class UsuarioBean {
     public UsuarioBean() {
         
     }
-     
+     public void insertar(){
+        UsuarioDAO userDao = new UsuarioDAOImp();
+        userDao.agregar(usuario);
+        usuario= new Usuario();
+        System.out.println("usuario insertado correctamente!!!");
+    }
     public Usuario validarUsuario(String nombreUs,String passwdUs){
         Usuario usuario=null;
         UsuarioDAO usuarioDAO=new UsuarioDAOImp();
@@ -44,6 +69,9 @@ public class UsuarioBean {
         UsuarioDAO usuarioDAO=new UsuarioDAOImp();
         return usuarioDAO.obtenerTodos();
     }
-    
+    public Usuario obtenerUsuario(String usuNombre, String password){
+        UsuarioDAO usuarioDAO=new UsuarioDAOImp();
+        return usuarioDAO.consulta(usuNombre, password);
+    }
     
 }

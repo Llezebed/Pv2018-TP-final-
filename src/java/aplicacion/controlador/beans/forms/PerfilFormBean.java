@@ -7,25 +7,29 @@ package aplicacion.controlador.beans.forms;
 
 import aplicacion.controlador.beans.PerfilBean;
 import aplicacion.controlador.beans.UsuarioBean;
+import aplicacion.datos.hibernate.dao.PerfilDAO;
+import aplicacion.datos.hibernate.dao.imp.PerfilDAOImp;
 import aplicacion.modelo.dominio.Perfil;
 import aplicacion.modelo.dominio.Usuario;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
  * @author Fer
  */
-@ManagedBean
-@ViewScoped
-public class PerfilFormBean {
+@Named(value = "perfilFormBean")
+@Dependent
+public class PerfilFormBean implements Serializable{
 
-     private int usucod;
+    private static final long serialVersionUID = 1L;
+    private int usucod;
     @ManagedProperty(value = "#{PerfilBean}")
     private PerfilBean perfilBean;
     @ManagedProperty(value = "#{UsuarioBean}")
@@ -66,10 +70,13 @@ public class PerfilFormBean {
 
     public void agregarPerfil() {
         unUsuario = new Usuario( getNombreUs(), getPasswUs(), getTipo(), true);
-        unPerfil = new Perfil(getUnUsuario(), getNombres(), getApellidos(), "11111", new Date(), "email", "direcion", true);
+       
         try {
-            System.out.println("estoy en el TRY....."+ unUsuario.getUsuCodigo().toString());
+            
             usuarioBean.agregarUsuario(unUsuario);
+            System.out.println("estoy en el TRY.....");
+            Usuario usuarioInsertado = usuarioBean.obtenerUsuario(getNombreUs(), getPasswUs());
+            unPerfil = new Perfil(usuarioInsertado, getNombres(), getApellidos(), "11111", new Date(), "email", "direcion", true);
             //perfilBean.agregarPerfil(unPerfil);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
@@ -79,7 +86,7 @@ public class PerfilFormBean {
         }
         FacesMessage facesMessage2 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
         FacesContext.getCurrentInstance().addMessage(null, facesMessage2);
-     //   listarPerfiles();
+        listarPerfiles();
     }
 
     public void eliminarPerfil() {
@@ -93,10 +100,10 @@ public class PerfilFormBean {
      * @return the perfilBean
      */
     public PerfilBean getPerfilBean() {
-//        Perfil consultado = null;
-//        PerfilDAO pd = new PerfilDAOImp();
-//        consultado = pd.obtenerPerfil(getNombreUs());
-//        setUnPerfil(consultado);
+        Perfil consultado = null;
+        PerfilDAO pd = new PerfilDAOImp();
+        consultado = pd.obtenerPerfil(getNombreUs());
+        setUnPerfil(consultado);
         return perfilBean;
     }
 

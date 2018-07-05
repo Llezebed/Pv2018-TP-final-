@@ -7,19 +7,20 @@ package aplicacion.controlador.beans.forms;
 
 import aplicacion.controlador.beans.UsuarioBean;
 import aplicacion.modelo.dominio.Usuario;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Fer
  */
-@ManagedBean
-@ViewScoped
-public class UsuarioFormBean {
-    @ManagedProperty(value="#{UsuarioBean}")
+@ManagedBean(name = "usuarioFormBean")
+@RequestScoped
+public class UsuarioFormBean implements Serializable{
+    @ManagedProperty(value="#{usuarioBean}")
     private UsuarioBean usuariosb;
     private Integer usuCodigo;
     private String usuNombreUsuario;
@@ -33,7 +34,12 @@ public class UsuarioFormBean {
      */
     public UsuarioFormBean() {
         usuariosb=new UsuarioBean();
-        listarUsuarios();
+        //listarUsuarios();
+    }
+    public void insertar(){
+        usuariosb = new UsuarioBean();
+        usuariosb.agregarUsuario(new Usuario(getUsuCodigo(), getUsuNombreUsuario(), getUsuPassword(), getUsuTipoUsuario(), true));
+//        System.out.println("inserto!!!");
     }
     private void listarUsuarios(){
         setListaUsuarios(getUsuariosb().obtenerUsuarios());

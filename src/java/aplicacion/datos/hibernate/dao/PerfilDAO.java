@@ -6,17 +6,18 @@
 package aplicacion.datos.hibernate.dao;
 
 import aplicacion.modelo.dominio.Perfil;
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Florencia
  */
 public interface PerfilDAO {
-    ArrayList<Perfil> obtenerTodos();
+    List<Perfil> obtenerTodos();
     Perfil obtenerPerfil(String usuario);
     Perfil consulta(String nombreUsuario,String passwd);
     void modificar (Perfil unPerfil);
-     void agregar (Perfil unPerfil);
-      void eliminar (Perfil unPerfil);
+    void agregar (Perfil unPerfil);
+    void eliminar (Perfil unPerfil);
 }

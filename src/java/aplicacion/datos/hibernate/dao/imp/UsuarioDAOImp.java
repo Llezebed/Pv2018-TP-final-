@@ -55,12 +55,21 @@ public class UsuarioDAOImp implements UsuarioDAO {
 
     @Override
     public void agregar(Usuario usuario) {
-         Session session =  HibernateUtil.getSessionFactory().openSession();
-         session.beginTransaction();
-         session.save(usuario);
-         session.getTransaction().commit();
-         session.close();
-         System.out.println("estoy en el DAO IMP.....");
+        Session session = HibernateUtil.getSessionFactory().openSession();  
+        try  
+        {  
+            session.beginTransaction();  
+            session.merge(usuario);  
+            session.flush();  
+            System.out.println("NewUser saved, id: " +   usuario.getUsuCodigo());  
+            session.getTransaction().commit();  
+        }  
+        catch (Exception e)  
+        {  
+            e.printStackTrace();  
+            session.getTransaction().rollback();  
+        }  
+        session.close();   
     }
 
     @Override
