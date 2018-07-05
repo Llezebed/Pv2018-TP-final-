@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./template/paginaInicio.xhtml">
+            <ui:define name="content">
+                <p:panel id="pnlPelicula" header="PELICULAS">
+                    
+                    <h:form id="frmPelicula">
+                        <p:growl id="mensaje" showDetail="true"/>
+                        <h:panelGrid id="tblUsuario" columns="2">
+                            <p:commandButton id="btnAgregar" value="Agregar" 
+                                             oncomplete="PF('modificarPelicula').show()" 
+                                             update="tblMuestraPeliculas" 
+                                             />
+                            <p:commandButton id="btnBuscar" value="Buscar"
+                                             oncomplete="PF('buscarPelicula').show()"
+                                             update="tblMuestraPeliculas"/>
+                        </h:panelGrid>
+                        <h:panelGrid id="tblMuestraPeliculas" columns="4">
+                            <p:dataTable id="dtTblPeliculas" var="cadaPelicula" value="#{peliculasFormmBeans.peliculasEncontradas}" emptyMessage="No hay peliculas en la base de datos :v">
+                                <p:column headerText="Nombre : ">
+                                    <p:outputLabel value="#{cadaPelicula.pelNombre}"/>
+                                </p:column>
+                                <p:column headerText="Descripcion : ">
+                                    <p:outputLabel value="#{cadaPelicula.pelDescripcion}"/>
+                                </p:column>
+                                <p:column headerText="Edicion">
+                                    <p:commandButton icon="ui-icon-pencil"
+                                                     oncomplete="PF('modificarPeicula').show()"
+                                                     update=":frmModificaPelicula"
+                                                     actionListener="#{peliculasFormmBeans.establecerPerfil(per)}"/>
+                                    <p:commandButton icon="ui-icon-trash"
+                                                     oncomplete="PF('eliminarPelicula').show()"
+                                                     update=":frmEliminarPelicula"
+                                                     actionListener="#{peliculasFormmBeans.establecerPerfil(per)}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+                <p:dialog id="dlgModificarPelicula"
+                          widgetVar="modificarPelicula"
+                          header="Modificacion de Pelicula"
+                          resizable="false"
+                          showEffect="explode"
+                          hideEffect="explode" modal="true">
+                    <h:form id="frmModificarPelicula">
+                        <h:panelGrid id="pnlModificarPelicula" columns="2">
+                            <p:outputLabel for="txtUsuario" value="Nombre : "/>
+                            <p:inputText id="txtUsuario" value="#{peliculasFormmBeans.unaPelicula.pelNombre}" required="true"/>
+                            <p:outputLabel for="txtTipoUsuario" value="Descripcion : "/>
+                            <p:inputText id="txtTipoUsuario" value="#{peliculasFormmBeans.unaPelicula.pelDescripcion}" required="true"/>
+                            <p:commandButton id="btnModificarUsuario" value="Modificar"
+                                             oncomplete="PF('modificarPelicula').hide()"
+                                             update=":frmPelicula"
+                                             actionListener="#{peliculasFormmBeans.peliculasbean.modificarPerfil(unaPelicula)}">
+                                <p:confirm header="Pedido de Confirmacion"
+                                           message="¿Confirma modificar pelicula?"
+                                           icon="ui-icon-alert"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrarModificarPelicula"
+                                             value="Salir"
+                                             oncomplete="PF('modificarPelicula').hide()"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+                <p:confirmDialog id="confirmacionDialogoPelicula"
+                                 global="true" showEffect="fade"
+                                 hideEffect="fade">
+                    <h:form id="frmConfirmacionOperacionPelicula">
+
+                        <p:commandButton value="SI" type="button"
+                                         styleClass="ui-confirmdialog-yes"
+                                         icon="ui-icon-chek"/>
+                        <p:commandButton value="NO" type="button"
+                                         styleClass="ui-confirmdialog-no"
+                                         icon="ui-icon-close"
+                                         style="float: right"/>
+                    </h:form>
+                </p:confirmDialog>
+                <p:dialog id="dlgEliminarPelicula" widgetVar="eliminarPelicula"
+                          header="Eliminacion de Pelicula" resizable="false"
+                          showEffect="explode" hideEffect="explode"
+                          modal="true">
+                    <h:form id="frmEliminarPelicula">
+                        <h:panelGrid id="pnlEliminarPelicula" columns="2">
+
+                            <p:outputLabel for="usuario" value="Nombre :"/>
+                            <p:outputLabel id="usuario" value="#{peliculasFormmBeans.unaPelicula.pelNombre}"/>                  
+                            <p:outputLabel for="txtTipoUsuario" value="Descripcion : "/>
+                            <p:outputLabel id="txtTipoUsuario" value="#{peliculasFormmBeans.unaPelicula.pelDescripcion}" />
+                            <p:commandButton id="btnEliminarPelicula" value="Eliminar"
+                                             actionListener="#{perfilFormBean.eliminarPerfil()}"
+                                             oncomplete="PF('eliminarPelicula').hide()"
+                                             update=":frmPelicula">
+                                <p:confirm header="Pedido de Confirmacion"
+                                           message="¿Confirma Eliminar Pelicula?"
+                                           icon="ui-icon-alert"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrarEliminarPelicula"
+                                             value="Salir"
+                                             oncomplete="PF('eliminarPelicula').hide()"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+                <p:dialog id="dlgAltaPelicula"
+                          widgetVar="agregarPelicula"
+                          header="Alta de Pelicula"
+                          resizable="false"
+                          showEffect="explode"
+                          hideEffect="explode" modal="true">
+                    <p:growl id="mensajesAltaPelicula" showDetail="false" showSummary="true"/>
+                    <h:form id="frmAltaPelicula">
+                        <h:panelGrid id="pnlAltaPelicula" columns="2">
+                            <p:outputLabel for="txtUsuario" value="Nombre : "/>
+                            <p:inputText id="txtUsuario" value="#{peliculasFormmBeans.pelNombre}" required="true"/>
+                            <p:outputLabel for="txtPass" value="Descripcion : "/>
+                            <p:inputText id="txtPass" value="#{peliculasFormmBeans.pelDescripcion}" required="true"/>
+                           
+                            <p:commandButton id="btnNuevodPelicula" value="Agregar"
+                                             oncomplete="PF('nuevoPelicula').hide()"
+                                             update=":frmPelicula :mensajesAltaPelicula"
+                                             actionListener="#{peliculasFormmBeans.agregarPerfil()}">
+                                <p:confirm header="Pedido de Confirmacion"
+                                           message="¿Confirma agregar Pelicula?"
+                                           icon="ui-icon-alert"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrarNuevoPelicula"
+                                             value="Salir"
+                                             oncomplete="PF('nuevoPelicula').hide()"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

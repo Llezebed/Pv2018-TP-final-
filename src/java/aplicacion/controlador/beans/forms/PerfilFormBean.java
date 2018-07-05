@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class PerfilFormBean {
 
-     private int usucod;
+    private int usucod;
     @ManagedProperty(value = "#{PerfilBean}")
     private PerfilBean perfilBean;
     @ManagedProperty(value = "#{UsuarioBean}")
@@ -45,6 +45,7 @@ public class PerfilFormBean {
         perfilBean = new PerfilBean();
         usuarioBean = new UsuarioBean();
         unUsuario = new Usuario();
+        listarPerfiles();
         //listarPerfiles();
     }
 
@@ -69,8 +70,8 @@ public class PerfilFormBean {
         unPerfil = new Perfil(getUnUsuario(), getNombres(), getApellidos(), "11111", new Date(), "email", "direcion", true);
         try {
             System.out.println("estoy en el TRY....."+ unUsuario.getUsuCodigo().toString());
-            usuarioBean.agregarUsuario(unUsuario);
-            //perfilBean.agregarPerfil(unPerfil);
+            //usuarioBean.agregarUsuario(unUsuario);
+            perfilBean.agregarPerfil(unPerfil);
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } catch (Exception e) {
@@ -79,7 +80,7 @@ public class PerfilFormBean {
         }
         FacesMessage facesMessage2 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Felicidades!", "Usuario creado con exito");
         FacesContext.getCurrentInstance().addMessage(null, facesMessage2);
-     //   listarPerfiles();
+        listarPerfiles();
     }
 
     public void eliminarPerfil() {
